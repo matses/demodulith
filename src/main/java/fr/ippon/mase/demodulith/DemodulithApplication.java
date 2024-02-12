@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class DemodulithApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(DemodulithApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(DemodulithApplication.class, args);
+    }
 
 }
