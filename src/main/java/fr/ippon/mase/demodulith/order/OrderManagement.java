@@ -1,10 +1,10 @@
 package fr.ippon.mase.demodulith.order;
 
-import fr.ippon.mase.demodulith.catalog.impl.CatalogRepository;
+import fr.ippon.mase.demodulith.catalog.CatalogManagement;
 import fr.ippon.mase.demodulith.order.impl.LineItem;
-import fr.ippon.mase.demodulith.order.impl.OrderRepository;
+import fr.ippon.mase.demodulith.order.impl.Orders;
 import fr.ippon.mase.demodulith.user.User;
-import org.springframework.stereotype.Service;
+import org.jmolecules.ddd.annotation.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,17 +12,25 @@ import java.util.stream.Collectors;
 @Service
 public class OrderManagement {
 
-    private OrderRepository orderRepository;
+    private final Orders orderRepository;
 
-    private CatalogRepository catalogRepository;
+    private final CatalogManagement catalogManagement;
 
-    public void complete(User.UserId userId, List<LineItem> lineItems) {
-        Order order = new Order(userId, lineItems);
+    public OrderManagement(Orders orderRepository, CatalogManagement catalogManagement) {
+        this.orderRepository = orderRepository;
+        this.catalogManagement = catalogManagement;
+    }
+
+    public void complete(Order order) {
         orderRepository.save(order);
-        catalogRepository.passToSold(
-                lineItems.stream()
+        catalogManagement.accept(
+                order.getLineItems().stream()
                         .map(li -> li.getOfferId().getId())
                         .collect(Collectors.toList()));
+    }
+
+    public Order get(Order.OrderId id){
+        return orderRepository.findById(id).orElse(null);
     }
 
 

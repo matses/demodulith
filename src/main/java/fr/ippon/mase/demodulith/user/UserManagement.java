@@ -1,7 +1,7 @@
 package fr.ippon.mase.demodulith.user;
 
 import fr.ippon.mase.demodulith.user.impl.UserRepository;
-import org.springframework.stereotype.Service;
+import org.jmolecules.ddd.annotation.Service;
 
 @Service
 public class UserManagement {

@@ -1,10 +1,12 @@
 package fr.ippon.mase.demodulith.catalog.impl;
 
 import fr.ippon.mase.demodulith.catalog.Offer;
+import jakarta.persistence.Table;
 import org.jmolecules.ddd.types.Identifier;
 
 import java.util.UUID;
 
+@Table(name = "card")
 public class PokemonCard implements org.jmolecules.ddd.types.Entity<Offer, PokemonCard.PokemonCardId> {
 
     private final PokemonCardId id;
@@ -29,7 +31,7 @@ public class PokemonCard implements org.jmolecules.ddd.types.Entity<Offer, Pokem
     }
 
     public enum CardType {
-        EX, STAR, IV_X, LEGEND, PRIME, BREAK, GX, PRISM_STAR, V, VSTAR
+        EX, STAR, IV_X, LEGEND, PRIME, BREAK, GX, PRISM_STAR, V, VSTAR, COMMON, HOLO, REVERSE_HOLO
     }
 
     public record PokemonCardId(UUID id) implements Identifier {

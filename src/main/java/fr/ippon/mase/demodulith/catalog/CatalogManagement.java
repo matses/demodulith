@@ -1,23 +1,29 @@
 package fr.ippon.mase.demodulith.catalog;
 
-import org.springframework.stereotype.Service;
+import fr.ippon.mase.demodulith.catalog.impl.Offers;
+import fr.ippon.mase.demodulith.catalog.impl.OfferStatus;
+import org.jmolecules.ddd.annotation.Service;
 
 import java.util.List;
 
 @Service
 public class CatalogManagement {
 
+    private final Offers catalogRepository;
+
+    public CatalogManagement(Offers catalogRepository) {
+        this.catalogRepository = catalogRepository;
+    }
+
     public Offer add(Offer offer) {
-        throw new UnsupportedOperationException("not implemented yet");
+        return catalogRepository.save(offer);
     }
 
-    public Offer update(Offer offer) {
-        throw new UnsupportedOperationException("not implemented yet");
+    public void accept(List<Offer.OfferId> ids) {
+        ids.stream().forEach(id -> catalogRepository.updateStatus(id, OfferStatus.SOLD));
     }
 
-    public void accept(List<Offer.OfferId> id) {
-        throw new UnsupportedOperationException("not implemented yet");
+    public Offer get(Offer.OfferId id) {
+        return catalogRepository.findById(id).orElse(null);
     }
-
-
 }

@@ -3,7 +3,7 @@ package fr.ippon.mase.demodulith;
 import org.junit.jupiter.api.Test;
 import org.springframework.modulith.core.ApplicationModules;
 
-public class ModularityTests {
+public class ModularityIT {
 
     ApplicationModules modules = ApplicationModules.of(DemodulithApplication.class);
 

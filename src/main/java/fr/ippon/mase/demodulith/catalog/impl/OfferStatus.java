@@ -1,6 +1,6 @@
 package fr.ippon.mase.demodulith.catalog.impl;
 
-public enum StatusOffer {
+public enum OfferStatus {
 
     CREATED, ONLINE, SOLD
 }

@@ -45,4 +45,11 @@ public class Order implements AggregateRoot<Order, Order.OrderId> {
         return orderStatus;
     }
 
+    public OrderId getOrderId() {
+        return orderId;
+    }
+
+    public List<LineItem> getLineItems() {
+        return lineItems;
+    }
 }
