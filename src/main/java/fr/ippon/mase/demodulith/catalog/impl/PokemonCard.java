@@ -66,5 +66,14 @@ public class PokemonCard implements org.jmolecules.ddd.types.Entity<Offer, Pokem
         return lang;
     }
 
-
+    @Override
+    public String toString() {
+        return "PokemonCard{" +
+                "name='" + name + '\'' +
+                ", type=" + type +
+                ", extension=" + extension +
+                ", number='" + number + '\'' +
+                ", lang='" + lang + '\'' +
+                '}';
+    }
 }
